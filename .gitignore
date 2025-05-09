@@ -1,0 +1,37 @@
+# 🐍 Python
+__pycache__/
+*.py[cod]
+*.sqlite3
+env/
+venv/
+*.env
+*.DS_Store
+
+# 🔥 Django
+/staticfiles/
+/media/
+/db.sqlite3
+*.log
+
+# 🔧 Environment
+.env
+.env.*
+
+# ⚛️ Node / React
+/frontend/node_modules/
+/frontend/.env
+/frontend/build/
+/frontend/dist/
+
+# 💻 System files
+*.swp
+*.swo
+*.bak
+*.tmp
+*.idea/
+.vscode/
+
+# 🧪 Testing
+coverage/
+htmlcov/
+.pytest_cache/
