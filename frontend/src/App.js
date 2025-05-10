@@ -35,22 +35,6 @@ export default function App() {
     
     useEffect(() => {
         let isMounted = true; // Track if the component is mounted
-        const fetchData = async () => {
-            try {
-                const [itemRes, locationRes, mediumRes] = await Promise.all([
-                    api.get("items/"),
-                    api.get("storage-locations/"),
-                    api.get("storage-mediums/"),
-                ]);
-                if (isMounted) {
-                    setData(itemRes.data);
-                    setLocations(locationRes.data);
-                    setMediums(mediumRes.data);
-                }
-            } catch (error) {
-                console.error("Error fetching data:". error);
-            }
-        };
         refreshData();
     }, []);
 
@@ -117,7 +101,7 @@ export default function App() {
 
         onCreatingRowSave: async ({ values, table }) => {
             try {
-                const res = await api.post("items/", values);
+                await api.post("items/", values);
                 table.setCreatingRow(null);
                 await refreshData();
             } catch (error) {
@@ -129,7 +113,7 @@ export default function App() {
             try {
                 const itemId = row.original.id;
                 const res = await api.put(`items/${itemId}/`, values);
-                const updatedItem = res.data;
+
 
                 await refreshData();
                 table.setEditingRow(null);
