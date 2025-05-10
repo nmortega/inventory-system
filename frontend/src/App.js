@@ -34,7 +34,7 @@ export default function App() {
 
     
     useEffect(() => {
-        let isMounted = true; // Track if the component is mounted
+       
         refreshData();
     }, []);
 
@@ -112,8 +112,7 @@ export default function App() {
         onEditingRowSave: async ({ values, row, table }) => {
             try {
                 const itemId = row.original.id;
-                const res = await api.put(`items/${itemId}/`, values);
-
+                await api.put(`items/${itemId}/`, values); // values is used here
 
                 await refreshData();
                 table.setEditingRow(null);
