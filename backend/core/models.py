@@ -49,3 +49,14 @@ class TrackedItemRecord(models.Model):
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
     change = models.IntegerField()
     timestamp = models.DateTimeField(auto_now_add=True)
+
+# models.py
+class QuantityHistory(models.Model):
+    item = models.ForeignKey(Item, on_delete=models.CASCADE)
+    change = models.IntegerField()
+    note = models.TextField(blank=True, null=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.item.name} | Change: {self.change} | {self.timestamp}"
+

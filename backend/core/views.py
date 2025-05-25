@@ -1,10 +1,11 @@
 from rest_framework import viewsets
-from .models import StorageLocation, StorageMedium, Item, TrackedItemRecord
+from .models import StorageLocation, StorageMedium, Item, TrackedItemRecord, QuantityHistory
 from .serializers import (
     StorageLocationSerializer,
     StorageMediumSerializer,
     ItemSerializer,
     TrackedItemRecordSerializer,
+    QuantityHistorySerializer,
 )
 
 # Create your views here.
@@ -21,3 +22,8 @@ class ItemViewSet(viewsets.ModelViewSet):
 class TrackedItemRecordViewSet(viewsets.ModelViewSet):
     queryset = TrackedItemRecord.objects.all()
     serializer_class = TrackedItemRecordSerializer
+class QuantityHistoryViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = QuantityHistory.objects.all().order_by('-timestamp')
+    serializer_class = QuantityHistorySerializer
+
+
